@@ -1,12 +1,25 @@
-// setItem[clé], [valeur] / getItem[clé] / removeItem[clé]
-// clear() : supprimer tout
-// key([index]) : obtenir la clef située à l'index donnée
-// lenght : obtenir le nombre d'éléments stockés
+let mode = document.querySelector('#mode');
+let span = document.querySelector('span');
 
-if(localStorage.getItem('prenom')) {
-    document.body.append('Bonjour ' + localStorage.getItem('prenom'));
-} else {
-    let prenom = prompt('Quel est votre prenom ?');
-    localStorage.setItem('prenom', prenom);
-    document.body.append('Bonjour ' + prenom);
+mode.addEventListener('click', () => {
+    if(document.body.classList.contains('dark')){
+        document.body.className = '';
+        span.textContent = '☾ Thème sombre';
+        localStorage.setItem('theme', 'clair');
+    } else {
+        modeSombre();
+    }
+})
+
+function modeSombre() {
+    document.body.className ='dark';
+    span.textContent = '☼ Thème clair';
+    localStorage.setItem('theme', 'sombre');
+}
+
+
+if(localStorage.getItem('theme')){
+    if(localStorage.getItem('theme') == 'sombre'){
+        modeSombre();
+    }
 }
